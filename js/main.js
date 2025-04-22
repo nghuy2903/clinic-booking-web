@@ -25,7 +25,110 @@ document.addEventListener('DOMContentLoaded', function() {
     if (searchButton) {
         searchButton.addEventListener('click', handleDoctorSearch);
     }
+
+    // Sidebar toggle
+    document.getElementById('sidebarCollapse').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('active');
+        document.getElementById('content').classList.toggle('active');
+    });
+
+    // Close sidebar on mobile when clicking outside
+    document.addEventListener('click', function(e) {
+        const sidebar = document.getElementById('sidebar');
+        const sidebarCollapse = document.getElementById('sidebarCollapse');
+        
+        if (!sidebar.contains(e.target) && !sidebarCollapse.contains(e.target) && window.innerWidth <= 768) {
+            sidebar.classList.add('active');
+            document.getElementById('content').classList.add('active');
+        }
+    });
+
+    // Handle notifications
+    const notificationDropdown = document.querySelector('.dropdown-toggle');
+    if (notificationDropdown) {
+        notificationDropdown.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Here you would typically fetch notifications from the server
+            console.log('Fetching notifications...');
+        });
+    }
+
+    // Handle logout
+    const logoutButton = document.querySelector('a[href="#logout"]');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                // Here you would typically handle logout logic
+                console.log('Logging out...');
+                window.location.href = '../login.html';
+            }
+        });
+    }
+
+    // Initialize charts
+    initializeCharts();
 });
+
+function initializeCharts() {
+    // Appointment Chart
+    const appointmentOptions = {
+        series: [{
+            name: 'Lịch hẹn',
+            data: [31, 40, 28, 51, 42, 109, 100]
+        }],
+        chart: {
+            height: 350,
+            type: 'area',
+            toolbar: {
+                show: false
+            }
+        },
+        colors: ['#6777ef'],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        xaxis: {
+            categories: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN']
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/yy HH:mm'
+            },
+        },
+    };
+
+    const appointmentChart = new ApexCharts(document.querySelector("#appointmentChart"), appointmentOptions);
+    appointmentChart.render();
+
+    // Specialty Chart
+    const specialtyOptions = {
+        series: [44, 55, 13, 43, 22],
+        chart: {
+            type: 'donut',
+            height: 350
+        },
+        labels: ['Tim mạch', 'Nội khoa', 'Thần kinh', 'Nhi khoa', 'Khác'],
+        colors: ['#6777ef', '#66bb6a', '#ffa426', '#fc544b', '#3abaf4'],
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    width: 200
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }]
+    };
+
+    const specialtyChart = new ApexCharts(document.querySelector("#specialtyChart"), specialtyOptions);
+    specialtyChart.render();
+}
 
 // Login handler
 function handleLogin(e) {

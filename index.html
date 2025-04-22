@@ -6,25 +6,35 @@
     <title>HealthCare Booking</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <nav class="navbar navbar-expand-lg fixed-top bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.html">HealthCare Booking</a>
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-heart-pulse-fill text-primary me-2"></i>
+                HealthCare Booking
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/booking.html">Đặt lịch khám</a>
+                        <a class="nav-link" href="#services">Dịch vụ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/login.html">Đăng nhập</a>
+                        <a class="nav-link" href="#features">Tính năng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Liên hệ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-primary ms-2" href="pages/login.html">Đăng nhập</a>
                     </li>
                 </ul>
             </div>
@@ -32,54 +42,178 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="container my-5">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="display-4 fw-bold">Đặt lịch khám trực tuyến</h1>
-                <p class="lead">Tiết kiệm thời gian và dễ dàng đặt lịch khám với bác sĩ chuyên môn.</p>
-                <a href="pages/login.html" class="btn btn-primary btn-lg">Đặt lịch ngay</a>
-            </div>
-            <div class="col-lg-6">
-                <img width="1300" height="1500" src="css/images/logo.jpg" class="img-fluid rounded" alt="Healthcare illustration">
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Đặt lịch khám trực tuyến dễ dàng và nhanh chóng</h1>
+                    <p class="lead mb-4">Tiết kiệm thời gian và dễ dàng đặt lịch khám với đội ngũ bác sĩ chuyên môn. Không cần xếp hàng, không cần chờ đợi.</p>
+                    <div class="d-flex gap-3">
+                        <a href="pages/login.html" class="btn btn-primary btn-lg">
+                            Đặt lịch ngay
+                            <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                        <a href="#features" class="btn btn-outline-primary btn-lg">Tìm hiểu thêm</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <img width="1300" height="1500" src="css/images/logo.jpg" class="img-fluid rounded-4 shadow-lg" alt="Healthcare illustration">
+                    </div> 
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Các chuyên khoa</h2>
+                <p class="section-subtitle">Đội ngũ bác sĩ chuyên môn cao từ nhiều lĩnh vực</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <h5>Tim mạch</h5>
+                        <p>Chẩn đoán và điều trị các bệnh về tim mạch</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-lungs"></i>
+                        </div>
+                        <h5>Hô hấp</h5>
+                        <p>Điều trị các bệnh về đường hô hấp</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-brain"></i>
+                        </div>
+                        <h5>Thần kinh</h5>
+                        <p>Chuyên khoa về hệ thần kinh</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-clipboard2-pulse"></i>
+                        </div>
+                        <h5>Nội khoa</h5>
+                        <p>Khám và điều trị bệnh nội khoa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Features Section -->
-    <div class="container my-5">
-        <h2 class="text-center mb-4">Tại sao chọn chúng tôi?</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="bi bi-calendar-check me-2"></i>Dễ dàng đặt lịch</h5>
-                        <p class="card-text">Đặt lịch khám chỉ với vài bước đơn giản, mọi lúc mọi nơi.</p>
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Tại sao chọn chúng tôi?</h2>
+                <p class="section-subtitle">Những lợi ích khi sử dụng dịch vụ đặt lịch khám online</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                        <h4>Đặt lịch dễ dàng</h4>
+                        <p>Đặt lịch khám chỉ với vài bước đơn giản, mọi lúc mọi nơi trên mọi thiết bị.</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Đội ngũ bác sĩ chuyên môn</h5>
-                        <p class="card-text">Đội ngũ bác sĩ giàu kinh nghiệm từ nhiều chuyên khoa.</p>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                        <h4>Bác sĩ chuyên môn</h4>
+                        <p>Đội ngũ bác sĩ giàu kinh nghiệm, được đào tạo chuyên sâu từ nhiều chuyên khoa.</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Tiết kiệm thời gian</h5>
-                        <p class="card-text">Không cần xếp hàng chờ đợi, chủ động chọn thời gian phù hợp.</p>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <h4>Tiết kiệm thời gian</h4>
+                        <p>Không cần xếp hàng chờ đợi, chủ động chọn thời gian phù hợp với lịch trình.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Liên hệ với chúng tôi</h2>
+                    <p class="mb-4">Hãy để lại thông tin, chúng tôi sẽ liên hệ với bạn sớm nhất</p>
+                    <form class="contact-form">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Họ và tên">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="4" placeholder="Nội dung"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Gửi tin nhắn</button>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-image">
+                        <img src="css/images/contact.png" class="img-fluid rounded-4" alt="Contact">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-light py-4 mt-5">
+    <footer class="footer bg-dark text-light py-5">
         <div class="container">
-            <p class="text-center text-muted mb-0">© 2024 HealthCare Booking. All rights reserved.</p>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">HealthCare Booking</h5>
+                    <p>Hệ thống đặt lịch khám bệnh trực tuyến hàng đầu Việt Nam</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Liên kết nhanh</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#services">Dịch vụ</a></li>
+                        <li><a href="#features">Tính năng</a></li>
+                        <li><a href="#contact">Liên hệ</a></li>
+                        <li><a href="pages/login.html">Đăng nhập</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Thông tin liên hệ</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-geo-alt me-2"></i>123 Đường ABC, Quận XYZ, TP.HCM</li>
+                        <li><i class="bi bi-telephone me-2"></i>(84) 123-456-789</li>
+                        <li><i class="bi bi-envelope me-2"></i>contact@healthcare.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4 border-light">
+            <p class="text-center mb-0">© 2024 HealthCare Booking. All rights reserved.</p>
         </div>
     </footer>
 

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HealthCare Booking</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Apex Charts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts/dist/apexcharts.css">
+    <!-- Custom CSS -->
+    <link href="../../css/admin.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header">
+                <div class="app-brand">
+                    <a href="dashboard.html">
+                        <i class="bi bi-heart-pulse-fill text-primary me-2"></i>
+                        <span class="brand-name">HealthCare</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="user-profile">
+                    <img src="../../css/images/admin-avatar.jpg" alt="Admin">
+                    <div class="user-info">
+                        <span class="user-name">Admin</span>
+                        <span class="user-role">Administrator</span>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="dashboard.html">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#doctorSubmenu" data-bs-toggle="collapse">
+                        <i class="bi bi-person-vcard"></i>
+                        <span>Quản lý bác sĩ</span>
+                        <i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul class="collapse list-unstyled" id="doctorSubmenu">
+                        <li><a href="doctors-list.html">Danh sách bác sĩ</a></li>
+                        <li><a href="add-doctor.html">Thêm bác sĩ mới</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="patients.html">
+                        <i class="bi bi-people"></i>
+                        <span>Quản lý bệnh nhân</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html">
+                        <i class="bi bi-calendar-check"></i>
+                        <span>Lịch hẹn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="specialties.html">
+                        <i class="bi bi-clipboard2-pulse"></i>
+                        <span>Chuyên khoa</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html">
+                        <i class="bi bi-graph-up"></i>
+                        <span>Báo cáo</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn">
+                        <i class="bi bi-list"></i>
+                    </button>
+
+                    <div class="header-search">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        </div>
+                    </div>
+
+                    <div class="header-actions">
+                        <div class="dropdown notification-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-bell"></i>
+                                <span class="badge bg-danger">3</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end notification-menu">
+                                <div class="notification-header">
+                                    <h6>Thông báo</h6>
+                                    <a href="#">Đánh dấu đã đọc</a>
+                                </div>
+                                <div class="notification-list">
+                                    <a href="#" class="notification-item">
+                                        <div class="notification-icon bg-primary">
+                                            <i class="bi bi-calendar-check"></i>
+                                        </div>
+                                        <div class="notification-details">
+                                            <p>Lịch hẹn mới từ Nguyễn Văn A</p>
+                                            <small>5 phút trước</small>
+                                        </div>
+                                    </a>
+                                    <!-- More notifications -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown profile-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <img src="../../css/images/admin-avatar.jpg" alt="Admin" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#"><i class="bi bi-person"></i> Hồ sơ</a>
+                                <a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Cài đặt</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <div class="container-fluid p-4">
+                <!-- Welcome Section -->
+                <div class="welcome-section mb-4">
+                    <h1>Xin chào, Admin!</h1>
+                    <p>Đây là tổng quan về hoạt động của hệ thống trong ngày hôm nay</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row g-4 mb-4">
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="stat-icon bg-primary">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <h4>1,234</h4>
+                                        <p>Tổng số bệnh nhân</p>
+                                    </div>
+                                </div>
+                                <div class="progress mt-3" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                                </div>
+                                <small class="text-success">
+                                    <i class="bi bi-arrow-up"></i>
+                                    12% so với tháng trước
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="stat-icon bg-success">
+                                        <i class="bi bi-calendar-check"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <h4>42</h4>
+                                        <p>Lịch hẹn hôm nay</p>
+                                    </div>
+                                </div>
+                                <div class="progress mt-3" style="height: 5px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
+                                </div>
+                                <small class="text-success">
+                                    <i class="bi bi-arrow-up"></i>
+                                    8 lịch hẹn mới
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="stat-icon bg-info">
+                                        <i class="bi bi-person-vcard"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <h4>48</h4>
+                                        <p>Số bác sĩ</p>
+                                    </div>
+                                </div>
+                                <div class="progress mt-3" style="height: 5px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%"></div>
+                                </div>
+                                <small class="text-info">
+                                    12 chuyên khoa
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="stat-icon bg-warning">
+                                        <i class="bi bi-graph-up"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <h4>89%</h4>
+                                        <p>Tỷ lệ đến khám</p>
+                                    </div>
+                                </div>
+                                <div class="progress mt-3" style="height: 5px;">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 89%"></div>
+                                </div>
+                                <small class="text-success">
+                                    <i class="bi bi-arrow-up"></i>
+                                    5% so với tháng trước
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="row mb-4">
+                    <div class="col-xl-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Thống kê lịch hẹn</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="appointmentChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Phân bố chuyên khoa</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="specialtyChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Appointments -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Lịch hẹn gần đây</h5>
+                            <a href="appointments.html" class="btn btn-primary btn-sm">Xem tất cả</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Bệnh nhân</th>
+                                        <th>Bác sĩ</th>
+                                        <th>Ngày giờ</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#APT001</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="../../css/images/patient1.jpg" class="rounded-circle me-2" width="30">
+                                                Nguyễn Văn A
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="../../css/images/doctor1.jpg" class="rounded-circle me-2" width="30">
+                                                BS. Trần B
+                                            </div>
+                                        </td>
+                                        <td>15/03/2024 09:00</td>
+                                        <td><span class="badge bg-success">Đã xác nhận</span></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-light btn-sm" data-bs-toggle="dropdown">
+                                                    <i class="bi bi-three-dots"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> Chi tiết</a></li>
+                                                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil"></i> Chỉnh sửa</a></li>
+                                                    <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash"></i> Xóa</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- More rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- Custom JS -->
+    <script src="../../js/admin.js"></script>
+</body>
+</html>
+
+</html>

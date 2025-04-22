@@ -83,7 +83,11 @@
         if (email === "user@gmail.com" && password === "123") {
             // Chuyển hướng đến trang booking
             window.location.href = "booking.html";
-        } else {
+        }else if(email === "admin@gmail.com" && password === "123"){
+            window.location.href = "admin/dashboard.html";
+        }else if(email === "doctor@gmail.com" && password === "123"){
+            window.location.href = "doctor/dashboard.html";
+        }else {
             alert("Email hoặc mật khẩu không đúng!");
         }
     });
