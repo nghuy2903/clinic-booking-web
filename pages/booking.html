@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt lịch khám - HealthCare Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- Add Flatpickr for better date picking -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">HealthCare Booking</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="booking.html">Đặt lịch khám</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Đăng nhập</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">Đăng ký</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Section -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Search and Filter Section -->
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Tìm kiếm bác sĩ</h5>
+                        <div class="mb-3">
+                            <label for="speciality" class="form-label">Chuyên khoa</label>
+                            <select class="form-select" id="speciality">
+                                <option value="">Chọn chuyên khoa</option>
+                                <option value="general">Đa khoa</option>
+                                <option value="cardiology">Tim mạch</option>
+                                <option value="neurology">Thần kinh</option>
+                                <option value="orthopedics">Cơ xương khớp</option>
+                                <option value="pediatrics">Nhi khoa</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Ngày khám</label>
+                            <input type="date" class="form-control" id="date">
+                        </div>
+                        <button class="btn btn-primary w-100" id="searchDoctors">Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctor List Section -->
+            <div class="col-md-8">
+                <div class="row g-4" id="doctorList">
+                    <!-- Sample Doctor Card -->
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://placehold.co/80x80" class="rounded-circle me-3" alt="Doctor">
+                                    <div>
+                                        <h5 class="card-title mb-1">BS. Nguyễn Văn A</h5>
+                                        <p class="text-muted mb-0">Chuyên khoa Tim mạch</p>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock"></i> Thời gian làm việc: 8:00 - 17:00
+                                    </small>
+                                </p>
+                                <button class="btn btn-outline-primary w-100" onclick="showBookingModal()">
+                                    Đặt lịch khám
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đặt lịch khám</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label class="form-label">Bác sĩ</label>
+                            <input type="text" class="form-control" value="BS. Nguyễn Văn A" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ngày khám</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Giờ khám</label>
+                            <select class="form-select" required>
+                                <option value="">Chọn giờ khám</option>
+                                <option>08:00</option>
+                                <option>09:00</option>
+                                <option>10:00</option>
+                                <option>14:00</option>
+                                <option>15:00</option>
+                                <option>16:00</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Lý do khám</label>
+                            <textarea class="form-control" rows="3" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" onclick="submitBooking()">Xác nhận đặt lịch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container">
+            <p class="text-center text-muted mb-0">© 2024 HealthCare Booking. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
