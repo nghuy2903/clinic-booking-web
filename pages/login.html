@@ -23,9 +23,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="login.html">Đăng nhập</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.html">Đăng ký</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -74,3 +71,20 @@
     <script src="../js/main.js"></script>
 </body>
 </html>
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Ngăn form gửi đi thật sự
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // Dữ liệu kiểm tra tạm thời
+        if (email === "user@gmail.com" && password === "123") {
+            // Chuyển hướng đến trang booking
+            window.location.href = "booking.html";
+        } else {
+            alert("Email hoặc mật khẩu không đúng!");
+        }
+    });
+</script>
