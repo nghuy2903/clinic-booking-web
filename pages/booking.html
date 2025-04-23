@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="../index.html">HealthCare Booking</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -53,6 +53,18 @@
                             <label for="date" class="form-label">Ngày khám</label>
                             <input type="date" class="form-control" id="date">
                         </div>
+                        <div class="mb-3">
+                            <label for="time" class="form-label">Giờ khám</label>
+                            <select class="form-select" id="time">
+                                <option value="">Chọn giờ khám</option>
+                                <option value="08:00">08:00</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                            </select>
+                        </div>
                         <button class="btn btn-primary w-100" id="searchDoctors">Tìm kiếm</button>
                     </div>
                 </div>
@@ -70,6 +82,90 @@
                                     <div>
                                         <h5 class="card-title mb-1">BS. Nguyễn Văn A</h5>
                                         <p class="text-muted mb-0">Chuyên khoa Tim mạch</p>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock"></i> Thời gian làm việc: 8:00 - 17:00
+                                    </small>
+                                </p>
+                                <button class="btn btn-outline-primary w-100" onclick="showBookingModal()">
+                                    Đặt lịch khám
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://placehold.co/80x80" class="rounded-circle me-3" alt="Doctor">
+                                    <div>
+                                        <h5 class="card-title mb-1">BS. Nguyễn Văn B</h5>
+                                        <p class="text-muted mb-0">Chuyên khoa Thần Kinh</p>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock"></i> Thời gian làm việc: 8:00 - 17:00
+                                    </small>
+                                </p>
+                                <button class="btn btn-outline-primary w-100" onclick="showBookingModal()">
+                                    Đặt lịch khám
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://placehold.co/80x80" class="rounded-circle me-3" alt="Doctor">
+                                    <div>
+                                        <h5 class="card-title mb-1">BS. Nguyễn Văn C</h5>
+                                        <p class="text-muted mb-0">Chuyên khoa Nha Khoa</p>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock"></i> Thời gian làm việc: 8:00 - 17:00
+                                    </small>
+                                </p>
+                                <button class="btn btn-outline-primary w-100" onclick="showBookingModal()">
+                                    Đặt lịch khám
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://placehold.co/80x80" class="rounded-circle me-3" alt="Doctor">
+                                    <div>
+                                        <h5 class="card-title mb-1">BS. Nguyễn Văn D</h5>
+                                        <p class="text-muted mb-0">Chuyên khoa Nhi Khoa</p>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock"></i> Thời gian làm việc: 8:00 - 17:00
+                                    </small>
+                                </p>
+                                <button class="btn btn-outline-primary w-100" onclick="showBookingModal()">
+                                    Đặt lịch khám
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://placehold.co/80x80" class="rounded-circle me-3" alt="Doctor">
+                                    <div>
+                                        <h5 class="card-title mb-1">BS. Nguyễn Văn F</h5>
+                                        <p class="text-muted mb-0">Chuyên khoa Đa Khoa</p>
                                     </div>
                                 </div>
                                 <p class="card-text">
@@ -133,9 +229,38 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light py-4 mt-5">
+    <footer class="footer bg-dark text-light py-5">
         <div class="container">
-            <p class="text-center text-muted mb-0">© 2024 HealthCare Booking. All rights reserved.</p>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">HealthCare Booking</h5>
+                    <p>Hệ thống đặt lịch khám bệnh trực tuyến hàng đầu Việt Nam</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Liên kết nhanh</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#services">Dịch vụ</a></li>
+                        <li><a href="#features">Tính năng</a></li>
+                        <li><a href="#contact">Liên hệ</a></li>
+                        <li><a href="pages/login.html">Đăng nhập</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Thông tin liên hệ</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-geo-alt me-2"></i>123 Đường ABC, Quận XYZ, TP.HCM</li>
+                        <li><i class="bi bi-telephone me-2"></i>(84) 123-456-789</li>
+                        <li><i class="bi bi-envelope me-2"></i>contact@healthcare.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4 border-light">
+            <p class="text-center mb-0">© 2024 HealthCare Booking. All rights reserved.</p>
         </div>
     </footer>
 

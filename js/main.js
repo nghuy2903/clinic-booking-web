@@ -169,12 +169,24 @@ function handleRegister(e) {
 // Doctor search handler
 function handleDoctorSearch() {
     const speciality = document.getElementById('speciality').value;
-    const date = document.getElementById('date').value;
-
-    // Here you would typically make an API call to get doctors
-    console.log('Searching doctors:', { speciality, date });
-    // For now, we'll just show a message
-    alert('Đang tìm kiếm bác sĩ...');
+    // Bản đồ giá trị select -> nhãn hiển thị trên card
+    const map = {
+        general: 'Đa Khoa',
+        cardiology: 'Tim mạch',
+        neurology: 'Thần Kinh',
+        orthopedics: 'Cơ xương khớp',
+        pediatrics: 'Nhi Khoa'
+    };
+    const doctorCols = document.querySelectorAll('#doctorList .col-md-6');
+    doctorCols.forEach(col => {
+        const specText = col.querySelector('.text-muted').innerText;
+        // nếu không chọn chuyên khoa hoặc trùng nhãn thì hiển thị
+        if (!speciality || specText.includes(map[speciality])) {
+            col.style.display = '';
+        } else {
+            col.style.display = 'none';
+        }
+    });
 }
 
 // Show booking modal
