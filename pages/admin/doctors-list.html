@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Bác sĩ - HealthCare Booking</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <!-- Custom CSS -->
+    <link href="../../css/admin.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar (giống dashboard.html) -->
+        [...]
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Navigation (giống dashboard.html) -->
+            [...]
+
+            <!-- Main Content -->
+            <div class="container-fluid p-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Danh sách Bác sĩ</h5>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDoctorModal">
+                            <i class="bi bi-plus-circle me-1"></i>
+                            Thêm Bác sĩ
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <!-- Filters -->
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <select class="form-select" id="specialtyFilter">
+                                    <option value="">Tất cả chuyên khoa</option>
+                                    <option value="1">Tim mạch</option>
+                                    <option value="2">Nội khoa</option>
+                                    <option value="3">Thần kinh</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select" id="statusFilter">
+                                    <option value="">Tất cả trạng thái</option>
+                                    <option value="active">Đang làm việc</option>
+                                    <option value="inactive">Tạm nghỉ</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Doctors Table -->
+                        <div class="table-responsive">
+                            <table id="doctorsTable" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Bác sĩ</th>
+                                        <th>Chuyên khoa</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Email</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#DOC001</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="../../css/images/doctor1.jpg" class="rounded-circle me-2" width="40" height="40">
+                                                <div>
+                                                    <h6 class="mb-0">BS. Nguyễn Văn A</h6>
+                                                    <small class="text-muted">15 năm kinh nghiệm</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Tim mạch</td>
+                                        <td>0901234567</td>
+                                        <td>doctor.a@healthcare.com</td>
+                                        <td>
+                                            <span class="badge bg-success">Đang làm việc</span>
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-light btn-sm" data-bs-toggle="dropdown">
+                                                    <i class="bi bi-three-dots"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewDoctorModal">
+                                                        <i class="bi bi-eye me-2"></i>Chi tiết
+                                                    </a></li>
+                                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editDoctorModal">
+                                                        <i class="bi bi-pencil me-2"></i>Chỉnh sửa
+                                                    </a></li>
+                                                    <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteDoctorModal">
+                                                        <i class="bi bi-trash me-2"></i>Xóa
+                                                    </a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- More doctor rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Doctor Modal -->
+    <div class="modal fade" id="addDoctorModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm Bác sĩ mới</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addDoctorForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Họ và tên</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Chuyên khoa</label>
+                                <select class="form-select" required>
+                                    <option value="">Chọn chuyên khoa</option>
+                                    <option value="1">Tim mạch</option>
+                                    <option value="2">Nội khoa</option>
+                                    <option value="3">Thần kinh</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Số điện thoại</label>
+                                <input type="tel" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Kinh nghiệm (năm)</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Giới thiệu</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ảnh đại diện</label>
+                            <input type="file" class="form-control" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Lịch làm việc</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="monday">
+                                        <label class="form-check-label" for="monday">Thứ 2</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="tuesday">
+                                        <label class="form-check-label" for="tuesday">Thứ 3</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="wednesday">
+                                        <label class="form-check-label" for="wednesday">Thứ 4</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="thursday">
+                                        <label class="form-check-label" for="thursday">Thứ 5</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="friday">
+                                        <label class="form-check-label" for="friday">Thứ 6</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="saturday">
+                                        <label class="form-check-label" for="saturday">Thứ 7</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" form="addDoctorForm" class="btn btn-primary">Thêm bác sĩ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Doctor Modal -->
+    <div class="modal fade" id="viewDoctorModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thông tin Bác sĩ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img src="../../css/images/doctor1.jpg" class="rounded-circle mb-3" width="150" height="150">
+                            <h5>BS. Nguyễn Văn A</h5>
+                            <p class="text-muted">Chuyên khoa Tim mạch</p>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <h6>Thông tin cá nhân</h6>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Email:</strong> doctor.a@healthcare.com</p>
+                                        <p><strong>Số điện thoại:</strong> 0901234567</p>
+                                        <p><strong>Kinh nghiệm:</strong> 15 năm</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Trạng thái:</strong> <span class="badge bg-success">Đang làm việc</span></p>
+                                        <p><strong>Ngày tham gia:</strong> 01/01/2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h6>Lịch làm việc</h6>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><i class="bi bi-check-circle-fill text-success me-2"></i>Thứ 2: 8:00 - 17:00</p>
+                                        <p><i class="bi bi-check-circle-fill text-success me-2"></i>Thứ 3: 8:00 - 17:00</p>
+                                        <p><i class="bi bi-check-circle-fill text-success me-2"></i>Thứ 4: 8:00 - 17:00</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><i class="bi bi-check-circle-fill text-success me-2"></i>Thứ 5: 8:00 - 17:00</p>
+                                        <p><i class="bi bi-check-circle-fill text-success me-2"></i>Thứ 6: 8:00 - 17:00</p>
+                                        <p><i class="bi bi-x-circle-fill text-danger me-2"></i>Thứ 7: Nghỉ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteDoctorModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Xác nhận xóa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn có chắc chắn muốn xóa bác sĩ này không?</p>
+                    <p class="text-danger"><small>Hành động này không thể hoàn tác.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-danger">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Required Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="../../js/admin.js"></script>
+</body>
+</html>

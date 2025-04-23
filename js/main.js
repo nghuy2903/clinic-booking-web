@@ -201,3 +201,46 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Initialize DataTable for doctors list
+$(document).ready(function() {
+    if ($('#doctorsTable').length) {
+        $('#doctorsTable').DataTable({
+            language: {
+                search: "Tìm kiếm:",
+                lengthMenu: "Hiển thị _MENU_ dòng",
+                info: "Hiển thị _START_ đến _END_ của _TOTAL_ bác sĩ",
+                infoEmpty: "Hiển thị 0 đến 0 của 0 bác sĩ",
+                infoFiltered: "(lọc từ _MAX_ bác sĩ)",
+                paginate: {
+                    first: "Đầu",
+                    last: "Cuối",
+                    next: "Sau",
+                    previous: "Trước"
+                }
+            },
+            pageLength: 10,
+            order: [[0, 'asc']]
+        });
+    }
+
+    // Handle specialty filter
+    $('#specialtyFilter').change(function() {
+        var table = $('#doctorsTable').DataTable();
+        table.column(2).search($(this).val()).draw();
+    });
+
+    // Handle status filter
+    $('#statusFilter').change(function() {
+        var table = $('#doctorsTable').DataTable();
+        table.column(5).search($(this).val()).draw();
+    });
+
+    // Handle form submission
+    $('#addDoctorForm').submit(function(e) {
+        e.preventDefault();
+        // Add your form submission logic here
+        alert('Thêm bác sĩ thành công!');
+        $('#addDoctorModal').modal('hide');
+    });
+});
+
