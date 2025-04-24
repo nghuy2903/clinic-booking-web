@@ -169,6 +169,79 @@ function showBookingModal(doctorName) {
     modal.show();
 }
 
+// Dữ liệu mẫu cho lịch hẹn
+let appointments = [
+    {
+        id: 1,
+        doctor: "Bác sĩ Nguyễn Văn A",
+        date: "2024-04-25",
+        time: "09:00",
+        reason: "Đau đầu và sốt"
+    },
+    {
+        id: 2,
+        doctor: "Bác sĩ Trần Thị B",
+        date: "2024-04-26",
+        time: "14:00",
+        reason: "Khám tổng quát"
+    }
+];
+
+// Hiển thị danh sách lịch hẹn
+function displayAppointments() {
+    const appointmentsList = document.querySelector('.appointments-list');
+    if (!appointmentsList) return;
+
+    if (appointments.length === 0) {
+        appointmentsList.innerHTML = '<div class="no-appointments">Bạn chưa có lịch hẹn nào</div>';
+        return;
+    }
+
+    appointmentsList.innerHTML = appointments.map(appointment => `
+        <div class="appointment-item" data-id="${appointment.id}">
+            <div class="appointment-header">
+                <span class="appointment-doctor">${appointment.doctor}</span>
+                <span class="appointment-date">${formatDate(appointment.date)}</span>
+            </div>
+            <div class="appointment-details">
+                <div class="appointment-time">Giờ khám: ${appointment.time}</div>
+                <div class="appointment-reason">Lý do: ${appointment.reason}</div>
+            </div>
+            <div class="appointment-actions">
+                <button class="cancel-btn" onclick="cancelAppointment(${appointment.id})">Hủy lịch</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Hủy lịch hẹn
+function cancelAppointment(id) {
+    if (confirm('Bạn có chắc chắn muốn hủy lịch hẹn này?')) {
+        appointments = appointments.filter(appointment => appointment.id !== id);
+        displayAppointments();
+        alert('Đã hủy lịch hẹn thành công!');
+    }
+}
+
+// Định dạng ngày
+function formatDate(dateString) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('vi-VN', options);
+}
+
+// Thêm lịch hẹn mới
+function addAppointment(doctor, date, time, reason) {
+    const newAppointment = {
+        id: appointments.length + 1,
+        doctor,
+        date,
+        time,
+        reason
+    };
+    appointments.push(newAppointment);
+    displayAppointments();
+}
+
 // Thêm event listener khi DOM đã load
 document.addEventListener('DOMContentLoaded', () => {
     const symptomInput = document.getElementById('symptom-input');
@@ -198,9 +271,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hiển thị tất cả bác sĩ khi trang load
     displayDoctors(doctors);
+
+    // Hiển thị danh sách lịch hẹn khi modal được mở
+    const appointmentsModal = document.getElementById('appointmentsModal');
+    if (appointmentsModal) {
+        appointmentsModal.addEventListener('show.bs.modal', displayAppointments);
+    }
 });
 
-// Hàm xử lý đặt lịch
+// Cập nhật hàm submitBooking để thêm lịch hẹn mới
 function submitBooking() {
     console.log('Starting form validation');
     const bookingDate = document.getElementById('booking-date');
@@ -264,19 +343,13 @@ function submitBooking() {
         return;
     }
     
-    // Nếu tất cả đều hợp lệ, gửi form
-    console.log('Form is valid, submitting...');
-    
-    // Lấy dữ liệu form
-    const bookingData = {
-        doctor: doctorName.value,
-        date: bookingDate.value,
-        time: bookingTime.value,
-        reason: bookingReason.value.trim()
-    };
-    
-    // Trong thực tế, bạn sẽ gửi dữ liệu này lên server
-    console.log('Booking data:', bookingData);
+    // Thêm lịch hẹn mới
+    addAppointment(
+        doctorName.value,
+        bookingDate.value,
+        bookingTime.value,
+        bookingReason.value.trim()
+    );
     
     // Hiển thị thông báo thành công
     alert('Đặt lịch thành công! Vui lòng chờ xác nhận từ bác sĩ.');

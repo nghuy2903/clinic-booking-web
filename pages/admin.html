@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Trị - Hệ Thống Đặt Lịch Khám Bệnh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/specialty-search.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <style>
+        .admin-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 0.8rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .admin-header .navbar {
+            padding: 0;
+        }
+
+        .admin-header .navbar-brand {
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-header .navbar-brand:hover {
+            color: #ffffff;
+            transform: translateY(-1px);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .admin-header .navbar-brand i {
+            font-size: 2rem;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .admin-header .nav-link {
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            padding: 0.8rem 1.4rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-header .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ffffff;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .admin-header .nav-link:hover {
+            color: #ffffff;
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-1px);
+        }
+
+        .admin-header .nav-link:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .admin-header .nav-link i {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .admin-header .nav-link:hover i {
+            transform: scale(1.1);
+        }
+
+        .admin-header .action-btn {
+            color: #ffffff;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 0.8rem 1.4rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-left: 0.5rem;
+        }
+
+        .admin-header .action-btn:hover {
+            color: #ffffff;
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .admin-header .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .admin-header .navbar-toggler:hover {
+            transform: scale(1.1);
+        }
+
+        .admin-header .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        @media (max-width: 768px) {
+            .admin-header .navbar-brand {
+                font-size: 1.4rem;
+            }
+            
+            .admin-header .nav-link {
+                padding: 0.7rem 1.2rem;
+            }
+            
+            .admin-header .action-btn {
+                padding: 0.7rem 1.2rem;
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="../index.html">
+                        <i class="bi bi-hospital"></i>
+                        HealthCare Booking
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index.html">
+                                    <i class="bi bi-house-door"></i> Trang Chủ
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../pages/admin/doctors-list.html" data-bs-toggle="modal" data-bs-target="#doctorsModal">
+                                    <i class="bi bi-person-badge"></i> Quản lý Bác sĩ
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#specialtiesModal">
+                                    <i class="bi bi-clipboard-pulse"></i> Quản lý Chuyên khoa
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#appointmentsModal">
+                                    <i class="bi bi-calendar-check"></i> Quản lý Lịch hẹn
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="d-flex">
+                            <button class="action-btn" data-bs-toggle="modal" data-bs-target="#addDoctorModal">
+                                <i class="bi bi-person-plus"></i> Thêm Bác sĩ
+                            </button>
+                            <button class="action-btn" data-bs-toggle="modal" data-bs-target="#addSpecialtyModal">
+                                <i class="bi bi-plus-circle"></i> Thêm Chuyên khoa
+                            </button>
+                            <a class="nav-link logout-btn" href="../index.html">
+                                <i class="bi bi-box-arrow-right"></i> Đăng Xuất
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <body>
+        
+            
+    
+                <!-- Main Content -->
+                <div class="container-fluid p-4">
+                    <!-- Welcome Section -->
+                    <div class="welcome-section mb-4">
+                        <h1>Xin chào, Admin!</h1>
+                        <p>Đây là tổng quan về hoạt động của hệ thống trong ngày hôm nay</p>
+                    </div>
+    
+                    <!-- Stats Cards -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon bg-primary">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                            <h4>1,234</h4>
+                                            <p>Tổng số bệnh nhân</p>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-3" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                                    </div>
+                                    <small class="text-success">
+                                        <i class="bi bi-arrow-up"></i>
+                                        12% so với tháng trước
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon bg-success">
+                                            <i class="bi bi-calendar-check"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                            <h4>42</h4>
+                                            <p>Lịch hẹn hôm nay</p>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-3" style="height: 5px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
+                                    </div>
+                                    <small class="text-success">
+                                        <i class="bi bi-arrow-up"></i>
+                                        8 lịch hẹn mới
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon bg-info">
+                                            <i class="bi bi-person-vcard"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                            <h4>48</h4>
+                                            <p>Số bác sĩ</p>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-3" style="height: 5px;">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%"></div>
+                                    </div>
+                                    <small class="text-info">
+                                        12 chuyên khoa
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon bg-warning">
+                                            <i class="bi bi-graph-up"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                            <h4>89%</h4>
+                                            <p>Tỷ lệ đến khám</p>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-3" style="height: 5px;">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 89%"></div>
+                                    </div>
+                                    <small class="text-success">
+                                        <i class="bi bi-arrow-up"></i>
+                                        5% so với tháng trước
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Charts Section -->
+                    <div class="row mb-4">
+                        <div class="col-xl-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Thống kê lịch hẹn</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div id="appointmentChart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Phân bố chuyên khoa</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div id="specialtyChart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Recent Appointments -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">Lịch hẹn gần đây</h5>
+                                <a href="appointments.html" class="btn btn-primary btn-sm">Xem tất cả</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Bệnh nhân</th>
+                                            <th>Bác sĩ</th>
+                                            <th>Ngày giờ</th>
+                                            <th>Trạng thái</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#APT001</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../css/images/patient.png class="rounded-circle me-2" width="30">
+                                                    Nguyễn Văn A
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../css/images/doctor.jpg" class="rounded-circle me-2" width="30">
+                                                    BS. Trần B
+                                                </div>
+                                            </td>
+                                            <td>15/03/2024 09:00</td>
+                                            <td><span class="badge bg-success">Đã xác nhận</span></td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm" data-bs-toggle="dropdown">
+                                                        <i class="bi bi-three-dots"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> Chi tiết</a></li>
+                                                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil"></i> Chỉnh sửa</a></li>
+                                                        <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash"></i> Xóa</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- More rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- ApexCharts -->
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <!-- Custom JS -->
+        <script src="../../js/admin.js"></script>
+    </body>
+</body>
+</html> 
