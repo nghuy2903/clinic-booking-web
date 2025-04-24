@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Bác Sĩ - Hệ Thống Đặt Lịch Khám Bệnh</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/specialty-search.css">
+</head>
+<body>
+    <header class="header-nav">
+        <div class="logo">
+            <h1>Hệ Thống Đặt Lịch Khám Bệnh</h1>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Trang Chủ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Lịch Hẹn</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Thông Tin Cá Nhân</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Đăng Xuất</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="doctor-dashboard">
+        <aside class="doctor-profile">
+            <h2>Thông Tin Cá Nhân</h2>
+            <div class="profile-info">
+                <img src="../images/doctor-avatar.jpg" alt="Ảnh đại diện" class="profile-avatar">
+                <div class="profile-details">
+                    <p><strong>Họ tên:</strong> <span id="doctor-name">Nguyễn Văn A</span></p>
+                    <p><strong>Chuyên khoa:</strong> <span id="doctor-specialty">Nội khoa</span></p>
+                    <p><strong>Email:</strong> <span id="doctor-email">doctor@example.com</span></p>
+                    <p><strong>Số điện thoại:</strong> <span id="doctor-phone">0123456789</span></p>
+                </div>
+            </div>
+            <button class="edit-profile-btn">Chỉnh sửa thông tin</button>
+        </aside>
+
+        <section class="appointment-requests">
+            <h2>Danh Sách Cuộc Hẹn</h2>
+            <div class="appointment-filters">
+                <select id="appointment-status">
+                    <option value="all">Tất cả</option>
+                    <option value="pending">Chờ xác nhận</option>
+                    <option value="confirmed">Đã xác nhận</option>
+                    <option value="completed">Đã hoàn thành</option>
+                    <option value="cancelled">Đã hủy</option>
+                </select>
+                <input type="date" id="appointment-date">
+            </div>
+            
+            <div class="appointment-list" id="appointment-list">
+                <!-- Các cuộc hẹn sẽ được thêm vào đây bằng JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/doctor.js"></script>
+</body>
+</html> 

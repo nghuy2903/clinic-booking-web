@@ -50,20 +50,8 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="date" class="form-label">Ngày khám</label>
-                            <input type="date" class="form-control" id="date">
-                        </div>
-                        <div class="mb-3">
-                            <label for="time" class="form-label">Giờ khám</label>
-                            <select class="form-select" id="time">
-                                <option value="">Chọn giờ khám</option>
-                                <option value="08:00">08:00</option>
-                                <option value="09:00">09:00</option>
-                                <option value="10:00">10:00</option>
-                                <option value="14:00">14:00</option>
-                                <option value="15:00">15:00</option>
-                                <option value="16:00">16:00</option>
-                            </select>
+                            <label for="symptoms" class="form-label">Triệu chứng</label>
+                            <input type="text" class="form-control" id="symptoms" placeholder="Nhập triệu chứng của bạn">
                         </div>
                         <button class="btn btn-primary w-100" id="searchDoctors">Tìm kiếm</button>
                     </div>
@@ -166,6 +154,27 @@
                                     <div>
                                         <h5 class="card-title mb-1">BS. Nguyễn Văn F</h5>
                                         <p class="text-muted mb-0">Chuyên khoa Đa Khoa</p>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock"></i> Thời gian làm việc: 8:00 - 17:00
+                                    </small>
+                                </p>
+                                <button class="btn btn-outline-primary w-100" onclick="showBookingModal()">
+                                    Đặt lịch khám
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://placehold.co/80x80" class="rounded-circle me-3" alt="Doctor">
+                                    <div>
+                                        <h5 class="card-title mb-1">BS. Nguyễn Văn G</h5>
+                                        <p class="text-muted mb-0">Chuyên khoa Da Liễu</p>
                                     </div>
                                 </div>
                                 <p class="card-text">

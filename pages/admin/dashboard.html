@@ -83,56 +83,45 @@
 
         <!-- Page Content -->
         <div id="content">
-            <!-- Top Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <!-- Top Navigation (chuyển thành navbar ngang fixed-top) -->
+            <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white shadow-sm">
                 <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn">
+                    <button type="button" id="sidebarCollapse" class="btn me-3">
                         <i class="bi bi-list"></i>
                     </button>
-
-                    <div class="header-search">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                        </div>
-                    </div>
-
-                    <div class="header-actions">
-                        <div class="dropdown notification-dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-bell"></i>
-                                <span class="badge bg-danger">3</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end notification-menu">
-                                <div class="notification-header">
-                                    <h6>Thông báo</h6>
-                                    <a href="#">Đánh dấu đã đọc</a>
-                                </div>
-                                <div class="notification-list">
-                                    <a href="#" class="notification-item">
-                                        <div class="notification-icon bg-primary">
-                                            <i class="bi bi-calendar-check"></i>
-                                        </div>
-                                        <div class="notification-details">
-                                            <p>Lịch hẹn mới từ Nguyễn Văn A</p>
-                                            <small>5 phút trước</small>
-                                        </div>
-                                    </a>
-                                    <!-- More notifications -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dropdown profile-dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                <img src="../../css/images/admin-avatar.jpg" alt="Admin" class="rounded-circle">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#"><i class="bi bi-person"></i> Hồ sơ</a>
-                                <a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Cài đặt</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
-                            </div>
-                        </div>
+                    <a class="navbar-brand" href="dashboard.html">Admin Panel</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarAdmin">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+                            <li class="nav-item"><a class="nav-link" href="doctors-list.html">Bác sĩ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="appointments.html">Lịch hẹn</a></li>
+                            <li class="nav-item"><a class="nav-link" href="patients.html">Bệnh nhân</a></li>
+                        </ul>
+                        <form class="d-flex me-4">
+                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <li class="nav-item dropdown me-3">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                    <i class="bi bi-bell"></i><span class="badge bg-danger">3</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end notification-menu">
+                                    <!-- notifications -->
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                    <img src="../../css/images/admin-avatar.jpg" class="rounded-circle" width="30" alt="Admin">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <!-- profile menu -->
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -331,4 +320,5 @@
 </html>
 
 </html>
+
 
