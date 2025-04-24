@@ -19,6 +19,14 @@ body {
     padding-top: 76px;
     background-color: #f4f6f9;
     color: #6c757d;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding-bottom: 2rem;
 }
 
 /* Custom styles for cards */
@@ -163,36 +171,25 @@ body {
 
 /* Footer styles */
 .footer {
-    background-color: #1a202c;
-}
-
-.footer h5 {
+    background-color: #343a40;
     color: white;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
+    padding: 2rem 0;
+    margin-top: auto;
 }
 
-.footer ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer ul li a {
-    color: #a0aec0;
+.footer a {
+    color: #adb5bd;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s;
 }
 
-.footer ul li a:hover {
+.footer a:hover {
     color: white;
 }
 
-.social-links a {
+.footer .social-links a {
     font-size: 1.5rem;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--primary-color) !important;
+    margin-right: 1rem;
 }
 
 /* Buttons */
@@ -204,25 +201,24 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .btn-primary:hover {
-    background-color: #0b5ed7;
-    border-color: #0b5ed7;
-    transform: translateY(-2px);
+    background-color: #0069d9;
+    border-color: #0062cc;
 }
 
 .btn-outline-primary {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
+    color: #007bff;
+    border-color: #007bff;
 }
 
 .btn-outline-primary:hover {
-    background-color: var(--primary-color);
+    background-color: #007bff;
+    border-color: #007bff;
     color: white;
-    transform: translateY(-2px);
 }
 
 /* Responsive adjustments */
@@ -255,19 +251,24 @@ body {
 }
 
 /* Modal customization */
-.modal-header {
-    background-color: var(--primary-color);
-    color: white;
+.modal-content {
+    border-radius: 0.5rem;
 }
 
-.modal-header .btn-close {
-    color: white;
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
 }
 
 /* Form validation styles */
-.form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+.form-control:focus, .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .is-invalid {

@@ -140,4 +140,85 @@
 .reject-btn {
     background-color: #dc3545;
     color: white;
+}
+
+/* Doctor cards styles */
+.doctors-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.doctor-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.doctor-card:hover {
+    transform: translateY(-5px);
+}
+
+.doctor-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.doctor-info {
+    padding: 15px;
+}
+
+.doctor-info h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.specialty {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.experience, .rating {
+    color: #555;
+    margin: 5px 0;
+}
+
+.description {
+    color: #666;
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
+.available-days {
+    color: #444;
+    font-size: 0.9em;
+    margin: 10px 0;
+}
+
+.book-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.book-btn:hover {
+    background-color: #0056b3;
+}
+
+.no-results {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+    font-style: italic;
 } 

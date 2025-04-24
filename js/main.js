@@ -189,14 +189,8 @@ function handleDoctorSearch() {
     });
 }
 
-// Show booking modal
-function showBookingModal() {
-    const modal = new bootstrap.Modal(document.getElementById('bookingModal'));
-    modal.show();
-}
-
 // Submit booking
-function submitBooking() {
+function handleBookingSubmit() {
     // Here you would typically make an API call to submit the booking
     alert('Đặt lịch thành công! Vui lòng chờ xác nhận từ bác sĩ.');
     const modal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'));
